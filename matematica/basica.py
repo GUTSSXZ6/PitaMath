@@ -44,7 +44,7 @@ def resolver(expressao):
     try:
         arvore = ast.parse(texto, mode='eval')
     except (SyntaxError, ValueError) as exc:
-        raise ErroMatematico('Expressão inválida. Confira os números e operadores.') from exc
+        raise ErroMatematico('Operação inválida! Verifique a expressão digitada e tente novamente.') from exc
     if sum(1 for _ in ast.walk(arvore)) > 100:
         raise ErroMatematico('Expressão complexa demais.')
     etapas = []

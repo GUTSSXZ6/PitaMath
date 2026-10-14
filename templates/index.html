@@ -17,7 +17,7 @@
       <nav class="main-nav" aria-label="Navegação principal">
         <a href="#inicio">Início</a>
         <a href="#modos">Calculadoras</a>
-        <a href="#calculadora">Calcular</a>
+        <a href="#calculadora">Básica</a><a href="#calculadora-escolar">Escolar</a>
         <a href="#sobre">Sobre</a>
       </nav>
     </div>
@@ -41,7 +41,7 @@
         <div class="section-heading">
           <p class="eyebrow">Escolha como estudar</p>
           <h2 id="titulo-modos">Três maneiras de explorar a matemática</h2>
-          <p>Começaremos pela calculadora básica. Os outros módulos serão desenvolvidos depois.</p>
+          <p>A calculadora básica já funciona, e o módulo escolar começou pelas frações.</p>
         </div>
         <div class="mode-grid">
           <article class="mode-card mode-card-active">
@@ -52,11 +52,11 @@
             <a class="button button-primary" href="#calculadora">Abrir calculadora</a>
           </article>
           <article class="mode-card">
-            <span class="status">Em desenvolvimento</span>
+            <span class="status status-planned">Frações disponíveis</span>
             <span class="mode-icon" aria-hidden="true">x²</span>
             <h3>Matemática escolar</h3>
-            <p>Equações, regra de três, MMC, MDC, funções, geometria e outros assuntos.</p>
-            <button type="button" class="button button-disabled" disabled>Em breve</button>
+            <p>Comece com operações de frações. Equações, regra de três, MMC, MDC e geometria virão depois.</p>
+            <a class="button button-primary" href="#calculadora-escolar">Abrir calculadora</a>
           </article>
           <article class="mode-card">
             <span class="status">Em desenvolvimento</span>
@@ -152,6 +152,117 @@
       </div>
     </section>
 
+
+    <section class="section calculator-section" id="calculadora-escolar" aria-labelledby="titulo-escolar">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Módulo 02</p>
+          <h2 id="titulo-escolar">Calculadora escolar — Frações, MMC, MDC, potências, raízes e equações de 1º e 2º grau</h2>
+          <p>Escolha entre frações, MMC/MDC, potências, raízes e equações. O Python explica cada etapa da resolução.</p>
+        </div>
+        <div class="school-tabs" role="group" aria-label="Conteúdo escolar">
+          <button type="button" class="school-tab active" data-school-tab="fracoes" aria-pressed="true">Frações</button>
+          <button type="button" class="school-tab" data-school-tab="mmc-mdc" aria-pressed="false">MMC / MDC</button>
+          <button type="button" class="school-tab" data-school-tab="conteudos" aria-pressed="false">Potências, raízes e equações</button>
+        </div>
+        <div id="painel-fracoes" class="workspace">
+          <section class="calculator-panel" aria-label="Operações com frações">
+            <div class="calculator-topbar"><h3>Operação com frações</h3><span class="calculator-mode">Escolar</span></div>
+            <form id="form-fracoes" class="fraction-form">
+              <div class="fraction-fields">
+                <div class="fraction-field">
+                  <label for="fracao-primeira">Primeira fração</label>
+                  <input id="fracao-primeira" name="primeira" type="text" inputmode="text" maxlength="40" placeholder="1/2" value="1/2" required>
+                </div>
+                <div class="fraction-field">
+                  <label for="fracao-operador">Operação</label>
+                  <select id="fracao-operador" name="operador">
+                    <option value="+">Somar (+)</option>
+                    <option value="-">Subtrair (−)</option>
+                    <option value="*">Multiplicar (×)</option>
+                    <option value="/">Dividir (÷)</option>
+                  </select>
+                </div>
+                <div class="fraction-field">
+                  <label for="fracao-segunda">Segunda fração</label>
+                  <input id="fracao-segunda" name="segunda" type="text" inputmode="text" maxlength="40" placeholder="1/3" value="1/3" required>
+                </div>
+              </div>
+              <p class="input-help">Use o formato numerador/denominador, como 3/4. O denominador não pode ser zero.</p>
+              <button class="button button-primary fraction-submit" id="calcular-fracoes" type="submit">Calcular frações</button>
+              <p id="mensagem-fracoes" class="calculator-feedback" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+          <section class="solution-panel" aria-labelledby="titulo-solucao-escolar">
+            <div class="solution-header">
+              <div><p class="eyebrow">Entenda o raciocínio</p><h3 id="titulo-solucao-escolar">Resolução passo a passo</h3></div>
+              <button type="button" id="copiar-fracoes" class="button button-small" disabled>Copiar</button>
+            </div>
+            <div id="estado-inicial-fracoes" class="solution-placeholder">
+              <span class="placeholder-icon" aria-hidden="true">⅔</span>
+              <h4>Sua explicação aparecerá aqui</h4>
+              <p>Escolha as frações e clique em calcular.</p>
+            </div>
+            <div id="conteudo-fracoes" class="solution-content" hidden>
+              <div class="solution-summary">
+                <p class="solution-label">Expressão</p><p id="expressao-fracoes"></p>
+                <p class="solution-label">Resultado</p><p id="resultado-fracoes" class="solution-result"></p>
+              </div>
+              <h4>Etapas da resolução</h4>
+              <ol id="etapas-fracoes" class="steps-list"></ol>
+              <p id="observacao-fracoes" class="solution-note" hidden></p>
+            </div>
+            <div id="erro-fracoes" class="solution-error" role="alert" hidden>
+              <h4>Não foi possível calcular</h4><p id="texto-erro-fracoes"></p>
+            </div>
+          </section>
+        </div>
+        <div id="painel-mmc-mdc" class="workspace" hidden>
+          <section class="calculator-panel" aria-label="MMC e MDC de vários números">
+            <div class="calculator-topbar"><h3>MMC e MDC</h3><span class="calculator-mode">Escolar</span></div>
+            <form id="form-mmc-mdc" class="fraction-form">
+              <div class="fraction-field">
+                <label for="tipo-mmc-mdc">O que deseja calcular?</label>
+                <select id="tipo-mmc-mdc"><option value="mmc">MMC — mínimo múltiplo comum</option><option value="mdc">MDC — máximo divisor comum</option></select>
+              </div>
+              <div id="campos-mmc-mdc" class="number-fields">
+                <div class="number-field fraction-field"><label for="numero-mmc-1">Número 1</label><input id="numero-mmc-1" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="12" required></div>
+                <div class="number-field fraction-field"><label for="numero-mmc-2">Número 2</label><input id="numero-mmc-2" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="18" required></div>
+              </div>
+              <p class="input-help">Use de 2 a 10 números inteiros positivos (até 1.000.000 cada).</p>
+              <button type="button" id="adicionar-numero" class="button button-secondary number-add">+ Adicionar número</button>
+              <button type="submit" id="calcular-mmc-mdc" class="button button-primary fraction-submit">Calcular MMC</button>
+              <p id="mensagem-mmc-mdc" class="calculator-feedback" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+          <section class="solution-panel" aria-labelledby="titulo-solucao-mmc">
+            <div class="solution-header"><div><p class="eyebrow">Entenda o raciocínio</p><h3 id="titulo-solucao-mmc">Resolução passo a passo</h3></div><button type="button" id="copiar-mmc-mdc" class="button button-small" disabled>Copiar</button></div>
+            <div id="estado-inicial-mmc-mdc" class="solution-placeholder"><span class="placeholder-icon" aria-hidden="true">∴</span><h4>Sua explicação aparecerá aqui</h4><p>Escolha os números e clique em calcular.</p></div>
+            <div id="conteudo-mmc-mdc" class="solution-content" hidden><div class="solution-summary"><p class="solution-label">Operação</p><p id="expressao-mmc-mdc"></p><p class="solution-label">Resultado</p><p id="resultado-mmc-mdc" class="solution-result"></p></div><h4>Etapas da resolução</h4><ol id="etapas-mmc-mdc" class="steps-list"></ol><p id="observacao-mmc-mdc" class="solution-note" hidden></p></div>
+            <div id="erro-mmc-mdc" class="solution-error" role="alert" hidden><h4>Não foi possível calcular</h4><p id="texto-erro-mmc-mdc"></p></div>
+          </section>
+        </div>
+        <div id="painel-conteudos" class="workspace" hidden>
+          <section class="calculator-panel" aria-label="Potências, raízes e equações">
+            <div class="calculator-topbar"><h3>Matemática escolar</h3><span class="calculator-mode">Escolar</span></div>
+            <form id="form-conteudos" class="fraction-form">
+              <div class="fraction-field"><label for="tipo-conteudo">Conteúdo</label>
+                <select id="tipo-conteudo"><option value="potencia">Potenciação</option><option value="raiz">Radiciação</option><option value="equacao">Equação de 1º grau</option><option value="equacao2">Equação de 2º grau (Bhaskara)</option></select></div>
+              <div id="campos-conteudos" class="fraction-fields"></div>
+              <button type="submit" id="calcular-conteudos" class="button button-primary fraction-submit">Calcular e explicar</button>
+              <p id="mensagem-conteudos" class="calculator-feedback" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+          <section class="solution-panel" aria-label="Resolução do conteúdo escolar">
+            <div class="solution-header"><div><p class="eyebrow">Entenda o raciocínio</p><h3>Resolução passo a passo</h3></div><button type="button" id="copiar-conteudos" class="button button-small" disabled>Copiar</button></div>
+            <div id="estado-inicial-conteudos" class="solution-placeholder"><h4>Sua explicação aparecerá aqui</h4><p>Escolha o conteúdo, informe os valores e calcule.</p></div>
+            <div id="conteudo-conteudos" class="solution-content" hidden><div class="solution-summary"><p class="solution-label">Resultado</p><p id="resultado-conteudos" class="solution-result"></p></div><h4>Etapas da resolução</h4><ol id="etapas-conteudos" class="steps-list"></ol><p id="observacao-conteudos" class="solution-note" hidden></p></div>
+            <div id="erro-conteudos" class="solution-error" role="alert" hidden><h4>Não foi possível calcular</h4><p id="texto-erro-conteudos"></p></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
     <section class="section examples-section" id="exemplos" aria-labelledby="titulo-exemplos">
       <div class="container">
         <div class="section-heading"><p class="eyebrow">Experimente</p><h2 id="titulo-exemplos">Exemplos para praticar</h2></div>
@@ -177,7 +288,7 @@
         <p class="eyebrow">Sobre o projeto</p>
         <h2 id="titulo-sobre">Por que o PitaMath existe?</h2>
         <p>Inspirado no nome de Pitágoras, o PitaMath nasce para ajudar estudantes a compreender a matemática. Nossa proposta é mostrar não só a resposta, mas também o caminho até ela.</p>
-        <p>Este projeto está em desenvolvimento. A calculadora básica será implementada primeiro; os módulos escolar e científico virão em etapas futuras.</p>
+        <p>Este projeto está em desenvolvimento. A calculadora básica já funciona e a escolar oferece frações, MMC, MDC, potências, raízes e equações do 1º e 2º grau. O módulo científico será desenvolvido posteriormente.</p>
       </div>
     </section>
   </main>
