@@ -1,0 +1,64 @@
+/* PitaMath — identidade visual e layout responsivo */
+:root{color-scheme:dark;--bg:#080f1e;--surface:#101b30;--surface-2:#16243d;--line:#293b57;--text:#edf4ff;--muted:#a3b3ca;--blue:#4c91ff;--blue-hover:#72a8ff;--blue-soft:#152d51;--danger:#ff858c;--radius:18px;--shadow:0 20px 60px rgba(0,0,0,.18)}
+*,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed}a{color:inherit;text-decoration:none}a:hover{color:var(--blue-hover)}:focus-visible{outline:3px solid #a8caff;outline-offset:3px}::selection{background:var(--blue);color:#071123}[hidden]{display:none!important}.container{width:min(1140px,calc(100% - 40px));margin-inline:auto}.section{padding:84px 0}.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip-link{position:absolute;left:16px;top:-100px;z-index:30;padding:10px 16px;background:var(--blue);color:#071123;border-radius:10px}.skip-link:focus{top:12px}
+/* Header */
+.site-header{position:sticky;top:0;z-index:20;background:rgba(8,15,30,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}.header-content{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:inline-flex;align-items:center;gap:10px;font-weight:850;font-size:1.5rem;letter-spacing:-.05em;white-space:nowrap}.brand-mark{display:grid;place-items:center;width:40px;height:40px;background:var(--blue);color:#081326;border-radius:12px;font-size:1.55rem;letter-spacing:0}.brand-highlight,.accent{color:var(--blue)}.main-nav{display:flex;flex-wrap:wrap;gap:clamp(12px,2.5vw,32px)}.main-nav a{font-size:.93rem;font-weight:600;color:var(--muted)}.main-nav a:hover{color:var(--text)}
+/* Botões e textos comuns */
+.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:.75rem;font-weight:800;color:var(--blue);margin:0 0 14px}.button{display:inline-flex;justify-content:center;align-items:center;gap:8px;border:1px solid var(--line);padding:12px 20px;border-radius:11px;font-size:.95rem;font-weight:700;line-height:1.3;transition:background .18s,border-color .18s,transform .18s}.button:not(:disabled):hover{transform:translateY(-2px)}.button-primary{background:var(--blue);border-color:var(--blue);color:#061329}.button-primary:hover{background:var(--blue-hover);color:#061329}.button-secondary{background:var(--surface);color:var(--text)}.button-secondary:hover{border-color:var(--blue);color:var(--text)}.button-disabled{opacity:.55;background:var(--surface-2);color:var(--muted)}.button-small{padding:8px 13px;font-size:.82rem;background:var(--surface-2);color:var(--text)}.button-small:disabled{opacity:.45}.section-heading{max-width:700px;margin-bottom:30px}.section-heading h2,.history-heading h2,.about-content h2{font-size:clamp(1.7rem,3vw,2.45rem);letter-spacing:-.04em;line-height:1.2;margin:0 0 12px}.section-heading>p:last-child{color:var(--muted);margin:0}
+/* Hero */
+.hero{position:relative;overflow:hidden;padding:116px 0 106px;background:radial-gradient(ellipse at 80% 10%,rgba(54,118,220,.2),transparent 52%),linear-gradient(180deg,#0c1830,var(--bg))}.hero-content{position:relative;max-width:1140px}.hero h1{max-width:780px;font-size:clamp(2.7rem,6.3vw,5rem);line-height:1.1;letter-spacing:-.065em;margin:0 0 24px}.hero-description{max-width:620px;color:var(--muted);font-size:clamp(1.03rem,1.6vw,1.2rem);margin:0 0 30px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+/* Modos */
+.modes-section{background:#0b1528}.mode-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.mode-card{display:flex;flex-direction:column;align-items:flex-start;padding:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);min-width:0}.mode-card-active{border-color:#4079c5;box-shadow:0 0 0 1px rgba(76,145,255,.16)}.status{display:inline-flex;padding:5px 10px;background:#23314a;border-radius:99px;font-size:.75rem;font-weight:700;color:#c2d0e4}.status-planned{background:var(--blue-soft);color:#9ac5ff}.mode-icon{display:grid;place-items:center;margin:24px 0 12px;width:54px;height:54px;border-radius:14px;background:var(--blue-soft);color:#8bb9ff;font-size:1.75rem;font-weight:700}.mode-card h3{font-size:1.25rem;margin:0 0 10px}.mode-card p{color:var(--muted);margin:0 0 24px;flex:1}.mode-card .button{width:100%}
+/* Calculadora */
+.calculator-section{background:var(--bg)}.workspace{display:grid;grid-template-columns:minmax(320px,.92fr) minmax(0,1.08fr);align-items:start;gap:24px}.calculator-panel,.solution-panel{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px}.calculator-topbar,.solution-header,.history-heading{display:flex;justify-content:space-between;align-items:center;gap:12px}.calculator-topbar h3{font-size:1rem;margin:0}.calculator-mode{background:var(--blue-soft);color:#a3caff;padding:5px 11px;border-radius:99px;font-size:.78rem;font-weight:700}.calculator-display{margin-top:20px;padding:20px;border-radius:14px;border:1px solid #354b6b;background:#091427;min-height:124px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}.calculator-display input{width:100%;background:transparent;border:0;outline:0;color:var(--text);text-align:right;font-size:clamp(1.25rem,2.7vw,1.75rem);min-width:0}.calculator-display input::placeholder{color:#6f809a}.calculator-display output{text-align:right;color:var(--blue-hover);font-size:clamp(1.7rem,3vw,2.2rem);font-weight:800;overflow-wrap:anywhere;line-height:1.2}.input-help{font-size:.8rem;color:var(--muted);margin:12px 0 20px}.calculator-keyboard{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.key{min-width:0;min-height:60px;border:1px solid #34445e;border-radius:12px;background:#1a2a43;color:var(--text);font-size:1.2rem;font-weight:700;transition:background .16s,transform .12s,border-color .16s}.key:hover{background:#2a405f;border-color:#5076a5}.key:active{transform:scale(.96)}.key-operator{background:#19365b;color:#b7d4ff}.key-clear{background:#462732;color:#ffb3b9;border-color:#67414d}.key-clear:hover{background:#62303c}.key-equals{background:var(--blue);border-color:var(--blue);color:#061329;font-size:1.55rem}.key-equals:hover{background:var(--blue-hover)}.calculator-feedback{min-height:1.4em;color:var(--danger);font-size:.88rem;margin:14px 0 0}
+/* Resolução */
+.solution-panel{min-height:580px}.solution-header{padding-bottom:20px;border-bottom:1px solid var(--line)}.solution-header .eyebrow{margin-bottom:4px}.solution-header h3{font-size:1.25rem;line-height:1.3;margin:0}.solution-placeholder{min-height:410px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:25px}.placeholder-icon{display:grid;place-items:center;width:76px;height:76px;background:var(--blue-soft);color:var(--blue-hover);border-radius:22px;font-size:2.7rem;margin-bottom:20px}.solution-placeholder h4{font-size:1.12rem;margin:0 0 8px}.solution-placeholder p{max-width:300px;color:var(--muted);margin:0}.solution-content{padding-top:22px}.solution-summary{background:#0b1830;border:1px solid var(--line);padding:20px;border-radius:14px}.solution-label{font-size:.78rem;color:var(--muted);margin:0 0 2px}.solution-summary p:not(.solution-label){margin:0 0 12px;overflow-wrap:anywhere}.solution-summary p:last-child{margin-bottom:0}.solution-result{color:var(--blue-hover);font-weight:800;font-size:1.8rem}.solution-content h4{margin:24px 0 12px}.steps-list{list-style:none;counter-reset:steps;padding:0;margin:0;display:grid;gap:12px}.steps-list li{counter-increment:steps;position:relative;padding:13px 15px 13px 48px;background:#14243d;border:1px solid var(--line);border-radius:12px;overflow-wrap:anywhere}.steps-list li::before{content:counter(steps);position:absolute;left:13px;top:12px;width:25px;height:25px;border-radius:50%;background:var(--blue-soft);color:#a3caff;text-align:center;line-height:25px;font-weight:800;font-size:.8rem}.solution-note{color:var(--muted);font-size:.9rem}.solution-error{margin-top:22px;padding:20px;background:#3b202b;border:1px solid #74404e;border-radius:12px}.solution-error h4{margin:0 0 6px;color:#ffb4ba}.solution-error p{margin:0}
+/* Exemplos e histórico */
+.examples-section{background:#0b1528}.example-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.example-button{text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0;color:var(--text);transition:border-color .2s,transform .2s}.example-button:hover{border-color:var(--blue);transform:translateY(-2px)}.example-button span{display:block;font-size:.82rem;color:var(--muted);margin-bottom:8px}.example-button strong{font-size:1.35rem;overflow-wrap:anywhere}.history-heading{margin-bottom:18px}.history-heading h2{margin-bottom:0}#historico-vazio{color:var(--muted);background:var(--surface);border:1px dashed var(--line);padding:24px;border-radius:14px}.history-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}.history-list li{padding:14px 18px;border-radius:12px;background:var(--surface);border:1px solid var(--line)}
+/* Sobre e rodapé */
+.about-section{background:#0b1528}.about-content{max-width:1140px}.about-content>p:not(.eyebrow){max-width:760px;color:var(--muted)}.site-footer{border-top:1px solid var(--line);padding:26px 0}.footer-content{display:flex;align-items:center;justify-content:space-between;gap:15px;color:var(--muted);font-size:.9rem}.footer-content p{margin:0}.footer-content strong{color:var(--text)}
+/* Telas médias */
+@media(max-width:980px){.workspace{grid-template-columns:1fr}.solution-panel{min-height:380px}.solution-placeholder{min-height:260px}.example-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mode-card{padding:22px}}
+@media(max-width:700px){.container{width:min(100% - 28px,1140px)}.section{padding:62px 0}.header-content{flex-direction:column;justify-content:center;gap:8px;padding:12px 0}.main-nav{justify-content:center;gap:12px 18px}.main-nav a{font-size:.82rem}.hero{padding:76px 0}.mode-grid{grid-template-columns:1fr}.mode-icon{margin-top:18px}.mode-card p{margin-bottom:18px}.calculator-panel,.solution-panel{padding:17px}.calculator-keyboard{gap:8px}.key{min-height:56px}.solution-header h3{font-size:1.1rem}.footer-content{flex-direction:column;text-align:center}.history-heading{align-items:flex-start;flex-direction:column}}
+@media(max-width:420px){.hero h1{font-size:2.45rem}.hero-actions .button{width:100%}.calculator-display{padding:15px}.key{min-height:51px;font-size:1.05rem;border-radius:10px}.example-grid{grid-template-columns:1fr}.solution-header{align-items:flex-start}.solution-header .button{flex-shrink:0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+/* Ajustes de responsividade — PitaMath mobile */
+html { scroll-padding-top: 110px; }
+body { min-width: 0; overflow-x: clip; }
+section[id], main[id], div[id] { scroll-margin-top: 110px; }
+.workspace, .calculator-panel, .solution-panel, .solution-content,
+.solution-summary, .calculator-display { min-width: 0; max-width: 100%; }
+.calculator-display output, .solution-result {
+  display: block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  font-variant-numeric: tabular-nums;
+}
+.solution-result { font-size: clamp(1.2rem, 4.2vw, 1.8rem); line-height: 1.35; }
+.steps-list li { min-width: 0; overflow-wrap: anywhere; }
+.main-nav a { padding: 5px 2px; }
+@media (max-width: 700px) {
+  html { scroll-padding-top: 135px; }
+  section[id], main[id], div[id] { scroll-margin-top: 135px; }
+  .header-content { min-height: 0; gap: 6px; padding: 9px 0; }
+  .brand { font-size: 1.25rem; }
+  .brand-mark { width: 34px; height: 34px; font-size: 1.3rem; }
+  .main-nav { gap: 4px 14px; }
+  .main-nav a { font-size: .81rem; padding: 4px 1px; }
+  .calculator-display output { font-size: clamp(1.25rem, 5vw, 1.8rem); }
+  .solution-summary { padding: 16px; }
+  .steps-list li { padding-right: 12px; }
+  .calculator-topbar, .solution-header { flex-wrap: wrap; }
+  .key { touch-action: manipulation; }
+}
+@media (max-width: 420px) {
+  .container { width: calc(100% - 24px); }
+  .calculator-panel, .solution-panel { padding: 14px; }
+  .solution-result { font-size: 1.25rem; }
+  .calculator-display output { font-size: 1.35rem; }
+  .steps-list li { font-size: .92rem; padding-left: 43px; }
+  .steps-list li::before { left: 10px; }
+  .main-nav { gap: 2px 10px; }
+}

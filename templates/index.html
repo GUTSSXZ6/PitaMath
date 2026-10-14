@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PitaMath: aprenda matemática com calculadoras e resoluções explicadas passo a passo.">
+  <meta name="theme-color" content="#0b1220">
+  <title>PitaMath | Matemática passo a passo</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/calculadora.js') }}" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="container header-content">
+      <a class="brand" href="#inicio" aria-label="PitaMath, início"><span class="brand-mark" aria-hidden="true">π</span><span>Pita<span class="brand-highlight">Math</span></span></a>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="#inicio">Início</a>
+        <a href="#modos">Calculadoras</a>
+        <a href="#calculadora">Calcular</a>
+        <a href="#sobre">Sobre</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero section" id="inicio" aria-labelledby="titulo-principal">
+      <div class="container hero-content">
+        <p class="eyebrow">Matemática para entender, não apenas responder</p>
+        <h1 id="titulo-principal">Aprenda matemática, <span class="accent">passo a passo.</span></h1>
+        <p class="hero-description">Digite uma expressão, encontre o resultado e entenda o raciocínio por trás de cada etapa.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#calculadora">Começar a calcular</a>
+          <a class="button button-secondary" href="#modos">Explorar os modos</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section modes-section" id="modos" aria-labelledby="titulo-modos">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Escolha como estudar</p>
+          <h2 id="titulo-modos">Três maneiras de explorar a matemática</h2>
+          <p>Começaremos pela calculadora básica. Os outros módulos serão desenvolvidos depois.</p>
+        </div>
+        <div class="mode-grid">
+          <article class="mode-card mode-card-active">
+            <span class="status status-planned">Primeiro módulo</span>
+            <span class="mode-icon" aria-hidden="true">＋</span>
+            <h3>Calculadora básica</h3>
+            <p>Operações, frações, porcentagens, potências, raízes e fatoriais com explicações.</p>
+            <a class="button button-primary" href="#calculadora">Abrir calculadora</a>
+          </article>
+          <article class="mode-card">
+            <span class="status">Em desenvolvimento</span>
+            <span class="mode-icon" aria-hidden="true">x²</span>
+            <h3>Matemática escolar</h3>
+            <p>Equações, regra de três, MMC, MDC, funções, geometria e outros assuntos.</p>
+            <button type="button" class="button button-disabled" disabled>Em breve</button>
+          </article>
+          <article class="mode-card">
+            <span class="status">Em desenvolvimento</span>
+            <span class="mode-icon" aria-hidden="true">∑</span>
+            <h3>Calculadora científica</h3>
+            <p>Trigonometria, logaritmos, constantes e ferramentas avançadas.</p>
+            <button type="button" class="button button-disabled" disabled>Em breve</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section calculator-section" id="calculadora" aria-labelledby="titulo-calculadora">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Módulo 01</p>
+          <h2 id="titulo-calculadora">Calculadora básica</h2>
+          <p>Use os botões ou o teclado físico. Em seguida, acompanhe a resolução.</p>
+        </div>
+        <div class="workspace">
+          <section class="calculator-panel" aria-label="Calculadora">
+            <div class="calculator-topbar"><h3>Expressão matemática</h3><span class="calculator-mode">Básica</span></div>
+            <div class="calculator-display">
+              <label for="expressao" class="visually-hidden">Digite uma expressão matemática</label>
+              <input id="expressao" name="expressao" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="0" aria-describedby="ajuda-expressao" maxlength="200">
+              <output id="resultado-visor" for="expressao" aria-live="polite">0</output>
+            </div>
+            <p class="input-help" id="ajuda-expressao">Use os símbolos matemáticos do teclado abaixo. Pressione = para calcular.</p>
+            <div class="calculator-keyboard" role="group" aria-label="Teclado da calculadora">
+              <button type="button" class="key key-clear" data-action="clear" aria-label="Limpar tudo">AC</button>
+              <button type="button" class="key" data-action="backspace" aria-label="Apagar último caractere">⌫</button>
+              <button type="button" class="key key-operator" data-value="(" aria-label="Abrir parêntese">(</button>
+              <button type="button" class="key key-operator" data-value=")" aria-label="Fechar parêntese">)</button>
+
+              <button type="button" class="key key-operator" data-value="%" aria-label="Porcentagem">%</button>
+              <button type="button" class="key key-operator" data-value="√(" aria-label="Raiz quadrada">√</button>
+              <button type="button" class="key key-operator" data-value="^2" aria-label="Elevar ao quadrado">x²</button>
+              <button type="button" class="key key-operator" data-value="^" aria-label="Potência com expoente personalizado">xʸ</button>
+
+              <button type="button" class="key" data-value="7">7</button>
+              <button type="button" class="key" data-value="8">8</button>
+              <button type="button" class="key" data-value="9">9</button>
+              <button type="button" class="key key-operator" data-value="÷" aria-label="Dividir">÷</button>
+
+              <button type="button" class="key" data-value="4">4</button>
+              <button type="button" class="key" data-value="5">5</button>
+              <button type="button" class="key" data-value="6">6</button>
+              <button type="button" class="key key-operator" data-value="×" aria-label="Multiplicar">×</button>
+
+              <button type="button" class="key" data-value="1">1</button>
+              <button type="button" class="key" data-value="2">2</button>
+              <button type="button" class="key" data-value="3">3</button>
+              <button type="button" class="key key-operator" data-value="−" aria-label="Subtrair">−</button>
+
+              <button type="button" class="key" data-value="0">0</button>
+              <button type="button" class="key" data-value="," aria-label="Separador decimal">,</button>
+              <button type="button" class="key key-operator" data-value="!" aria-label="Fatorial">!</button>
+              <button type="button" class="key key-operator" data-value="+" aria-label="Somar">+</button>
+
+              <button type="button" class="key key-operator" data-value="^3" aria-label="Elevar ao cubo">x³</button>
+              <button type="button" class="key key-operator" data-value="10^" aria-label="Potência de base dez">10ˣ</button>
+              <button type="button" class="key key-operator" data-action="toggle-sign" aria-label="Alterar sinal">±</button>
+              <button type="button" class="key key-equals" data-action="calculate" aria-label="Calcular resultado">=</button>
+            </div>
+            <p class="calculator-feedback" id="mensagem-calculadora" role="status" aria-live="polite"></p>
+          </section>
+
+          <section class="solution-panel" aria-labelledby="titulo-solucao">
+            <div class="solution-header">
+              <div><p class="eyebrow">Entenda o raciocínio</p><h3 id="titulo-solucao">Resolução passo a passo</h3></div>
+              <button type="button" id="copiar-resolucao" class="button button-small" disabled>Copiar</button>
+            </div>
+            <div id="estado-inicial" class="solution-placeholder">
+              <span class="placeholder-icon" aria-hidden="true">∴</span>
+              <h4>Sua explicação aparecerá aqui</h4>
+              <p>Faça um cálculo para visualizar as etapas de resolução.</p>
+            </div>
+            <div id="conteudo-solucao" class="solution-content" hidden>
+              <div class="solution-summary">
+                <p class="solution-label">Expressão</p><p id="expressao-resolvida"></p>
+                <p class="solution-label">Resultado</p><p id="resultado-final" class="solution-result"></p>
+              </div>
+              <h4>Etapas da resolução</h4>
+              <ol id="lista-etapas" class="steps-list"></ol>
+              <p id="observacao-solucao" class="solution-note" hidden></p>
+            </div>
+            <div id="erro-solucao" class="solution-error" role="alert" hidden>
+              <h4>Não foi possível calcular</h4>
+              <p id="texto-erro"></p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="section examples-section" id="exemplos" aria-labelledby="titulo-exemplos">
+      <div class="container">
+        <div class="section-heading"><p class="eyebrow">Experimente</p><h2 id="titulo-exemplos">Exemplos para praticar</h2></div>
+        <div class="example-grid">
+          <button type="button" class="example-button" data-example="10+5×2"><span>Ordem das operações</span><strong>10 + 5 × 2</strong></button>
+          <button type="button" class="example-button" data-example="2^5"><span>Potenciação</span><strong>2⁵</strong></button>
+          <button type="button" class="example-button" data-example="√(81)"><span>Raiz quadrada</span><strong>√81</strong></button>
+          <button type="button" class="example-button" data-example="5!"><span>Fatorial</span><strong>5!</strong></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section history-section" id="historico" aria-labelledby="titulo-historico">
+      <div class="container">
+        <div class="history-heading"><div><p class="eyebrow">Seus cálculos</p><h2 id="titulo-historico">Histórico da sessão</h2></div><button type="button" id="limpar-historico" class="button button-secondary" disabled>Limpar histórico</button></div>
+        <p id="historico-vazio">Os cálculos realizados nesta sessão aparecerão aqui quando o histórico for implementado.</p>
+        <ol id="lista-historico" class="history-list" aria-live="polite"></ol>
+      </div>
+    </section>
+
+    <section class="section about-section" id="sobre" aria-labelledby="titulo-sobre">
+      <div class="container about-content">
+        <p class="eyebrow">Sobre o projeto</p>
+        <h2 id="titulo-sobre">Por que o PitaMath existe?</h2>
+        <p>Inspirado no nome de Pitágoras, o PitaMath nasce para ajudar estudantes a compreender a matemática. Nossa proposta é mostrar não só a resposta, mas também o caminho até ela.</p>
+        <p>Este projeto está em desenvolvimento. A calculadora básica será implementada primeiro; os módulos escolar e científico virão em etapas futuras.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-content"><p><strong>PitaMath</strong> — Matemática passo a passo.</p><a href="#inicio">Voltar ao início ↑</a></div></footer>
+</body>
+</html>
