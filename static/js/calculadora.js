@@ -465,4 +465,79 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Científica: interface e requisições. Os cálculos permanecem no Python.
+  const formCientifica = document.getElementById('form-cientifica');
+  if (formCientifica) {
+    const el = id => document.getElementById(id);
+    const operacao = el('operacao-cientifica');
+    const campos = el('campos-cientifica');
+    const modoCampo = el('modo-cientifica-campo');
+    const botao = el('calcular-cientifica');
+    const aviso = el('mensagem-cientifica');
+    const copiar = el('copiar-cientifica');
+    let textoCopiar = '';
+    const trig = new Set(['sen','cos','tan','arcsen','arccos','arctan']);
+    const modelos = {
+      sen: [['valor','Ângulo','30']], cos: [['valor','Ângulo','60']], tan: [['valor','Ângulo','45']],
+      arcsen: [['valor','Valor do seno (-1 a 1)','0,5']], arccos: [['valor','Valor do cosseno (-1 a 1)','0,5']], arctan: [['valor','Valor da tangente','1']],
+      log: [['valor','Número (maior que zero)','100'],['base','Base (positiva e diferente de 1)','10']],
+      ln: [['valor','Número (maior que zero)','2,71828']], exp: [['valor','Expoente de e','2']],
+      potencia: [['base','Base','2'],['expoente','Expoente','5']], raiz: [['valor','Radicando','81'],['indice','Índice da raiz','4']],
+      fatorial: [['valor','Inteiro de 0 a 170','5']], abs: [['valor','Número','-12']],
+      notacao: [['valor','Número a converter','125000']], potencia10: [['valor','Expoente de 10','3']]
+    };
+    function desenhar() {
+      campos.replaceChildren();
+      modoCampo.hidden = !trig.has(operacao.value);
+      for (const [nome, rotulo, exemplo] of modelos[operacao.value]) {
+        const div = document.createElement('div'); div.className = 'fraction-field';
+        const label = document.createElement('label'); label.htmlFor = `cientifica-${nome}`; label.textContent = rotulo;
+        const input = document.createElement('input'); input.id = label.htmlFor; input.name = nome;
+        input.type = 'text'; input.inputMode = 'decimal'; input.required = true; input.maxLength = 120;
+        input.placeholder = `Ex.: ${exemplo}`; input.value = exemplo;
+        div.append(label, input); campos.appendChild(div);
+      }
+      el('estado-inicial-cientifica').hidden = false;
+      el('conteudo-cientifica').hidden = true;
+      el('erro-cientifica').hidden = true;
+      copiar.disabled = true; textoCopiar = ''; aviso.textContent = '';
+    }
+    operacao.addEventListener('change', desenhar);
+    desenhar();
+    formCientifica.addEventListener('submit', async event => {
+      event.preventDefault();
+      const dados = {operacao: operacao.value};
+      if (trig.has(operacao.value)) dados.modo = el('modo-cientifica').value;
+      for (const input of campos.querySelectorAll('input')) {
+        const valor = input.value.trim();
+        if (!/^[+-]?(?:\d+(?:[.,]\d*)?|[.,]\d+)(?:[eE][+-]?\d+)?$/.test(valor)) {
+          aviso.textContent = 'Digite um número válido em cada campo.'; input.focus(); return;
+        }
+        dados[input.name] = valor.replace(',', '.');
+      }
+      botao.disabled = true; aviso.textContent = 'Calculando...';
+      try {
+        const resposta = await fetch('/api/cientifica', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(dados)});
+        const retorno = await resposta.json();
+        if (!resposta.ok || retorno.erro) throw new Error(retorno.erro || 'Não foi possível calcular.');
+        if (retorno.resultado == null || !Array.isArray(retorno.etapas)) throw new Error('Resposta incompleta do servidor.');
+        el('resultado-cientifica').textContent = String(retorno.resultado);
+        const lista = el('etapas-cientifica'); lista.replaceChildren();
+        retorno.etapas.forEach(etapa => { const li = document.createElement('li'); li.textContent = String(etapa); lista.appendChild(li); });
+        const obs = el('observacao-cientifica'); obs.textContent = retorno.observacao || ''; obs.hidden = !retorno.observacao;
+        el('estado-inicial-cientifica').hidden = true; el('erro-cientifica').hidden = true; el('conteudo-cientifica').hidden = false;
+        textoCopiar = `${operacao.options[operacao.selectedIndex].text}: ${retorno.resultado}\n${retorno.etapas.join('\n')}${retorno.observacao ? '\n' + retorno.observacao : ''}`;
+        copiar.disabled = false; aviso.textContent = 'Cálculo concluído.';
+      } catch (erro) {
+        el('estado-inicial-cientifica').hidden = true; el('conteudo-cientifica').hidden = true; el('erro-cientifica').hidden = false;
+        el('texto-erro-cientifica').textContent = erro.message; aviso.textContent = erro.message; copiar.disabled = true;
+      } finally { botao.disabled = false; }
+    });
+    copiar.addEventListener('click', async () => {
+      if (!textoCopiar) return;
+      try { await navigator.clipboard.writeText(textoCopiar); aviso.textContent = 'Explicação copiada!'; }
+      catch { aviso.textContent = 'Não foi possível copiar.'; }
+    });
+  }
+
 });

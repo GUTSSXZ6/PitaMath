@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="PitaMath: aprenda matemática com calculadoras e resoluções explicadas passo a passo.">
-  <meta name="theme-color" content="#0b1220">
+  <meta name="theme-color" content="#0b1120">
   <title>PitaMath | Matemática passo a passo</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <script src="{{ url_for('static', filename='js/calculadora.js') }}" defer></script>
@@ -18,7 +18,7 @@
         <a href="#inicio">Início</a>
         <a href="#modos">Calculadoras</a>
         <a href="#calculadora">Básica</a><a href="#calculadora-escolar">Escolar</a>
-        <a href="#sobre">Sobre</a>
+        <a href="#calculadora-cientifica">Científica</a><a href="#sobre">Sobre</a>
       </nav>
     </div>
   </header>
@@ -26,13 +26,14 @@
   <main id="conteudo">
     <section class="hero section" id="inicio" aria-labelledby="titulo-principal">
       <div class="container hero-content">
-        <p class="eyebrow">Matemática para entender, não apenas responder</p>
-        <h1 id="titulo-principal">Aprenda matemática, <span class="accent">passo a passo.</span></h1>
-        <p class="hero-description">Digite uma expressão, encontre o resultado e entenda o raciocínio por trás de cada etapa.</p>
+        <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Sua plataforma de estudos em matemática</p>
+        <h1 id="titulo-principal">Entenda a matemática.<br><span class="accent">Uma etapa de cada vez.</span></h1>
+        <p class="hero-description">Resolva operações, explore conceitos e acompanhe explicações claras, do básico ao científico.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#calculadora">Começar a calcular</a>
           <a class="button button-secondary" href="#modos">Explorar os modos</a>
         </div>
+        <div class="hero-proof" aria-label="Recursos do PitaMath"><span>✓ Resolução explicada</span><span>✓ 3 calculadoras</span><span>✓ Gratuito para estudar</span></div>
       </div>
     </section>
 
@@ -41,29 +42,29 @@
         <div class="section-heading">
           <p class="eyebrow">Escolha como estudar</p>
           <h2 id="titulo-modos">Três maneiras de explorar a matemática</h2>
-          <p>A calculadora básica já funciona, e o módulo escolar começou pelas frações.</p>
+          <p>Escolha entre os módulos Básico, Escolar e Científico, todos com explicações.</p>
         </div>
         <div class="mode-grid">
           <article class="mode-card mode-card-active">
-            <span class="status status-planned">Primeiro módulo</span>
-            <span class="mode-icon" aria-hidden="true">＋</span>
+            <span class="status status-planned">Disponível</span>
+            <span class="mode-icon" aria-hidden="true">01</span>
             <h3>Calculadora básica</h3>
             <p>Operações, frações, porcentagens, potências, raízes e fatoriais com explicações.</p>
             <a class="button button-primary" href="#calculadora">Abrir calculadora</a>
           </article>
           <article class="mode-card">
-            <span class="status status-planned">Frações disponíveis</span>
-            <span class="mode-icon" aria-hidden="true">x²</span>
+            <span class="status status-planned">Disponível</span>
+            <span class="mode-icon" aria-hidden="true">02</span>
             <h3>Matemática escolar</h3>
-            <p>Comece com operações de frações. Equações, regra de três, MMC, MDC e geometria virão depois.</p>
+            <p>Frações, MMC, MDC, potências, raízes e equações do primeiro e segundo grau.</p>
             <a class="button button-primary" href="#calculadora-escolar">Abrir calculadora</a>
           </article>
           <article class="mode-card">
-            <span class="status">Em desenvolvimento</span>
-            <span class="mode-icon" aria-hidden="true">∑</span>
+            <span class="status status-planned">Disponível</span>
+            <span class="mode-icon" aria-hidden="true">03</span>
             <h3>Calculadora científica</h3>
             <p>Trigonometria, logaritmos, constantes e ferramentas avançadas.</p>
-            <button type="button" class="button button-disabled" disabled>Em breve</button>
+            <a class="button button-primary" href="#calculadora-cientifica">Abrir calculadora</a>
           </article>
         </div>
       </div>
@@ -278,8 +279,44 @@
     <section class="section history-section" id="historico" aria-labelledby="titulo-historico">
       <div class="container">
         <div class="history-heading"><div><p class="eyebrow">Seus cálculos</p><h2 id="titulo-historico">Histórico da sessão</h2></div><button type="button" id="limpar-historico" class="button button-secondary" disabled>Limpar histórico</button></div>
-        <p id="historico-vazio">Os cálculos realizados nesta sessão aparecerão aqui quando o histórico for implementado.</p>
+        <p id="historico-vazio">Seus cálculos aparecerão aqui após a primeira operação.</p>
         <ol id="lista-historico" class="history-list" aria-live="polite"></ol>
+      </div>
+    </section>
+
+
+    <section class="section calculator-section" id="calculadora-cientifica" aria-labelledby="titulo-cientifica">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Módulo 03</p>
+          <h2 id="titulo-cientifica">Calculadora científica</h2>
+          <p>Escolha uma das 15 operações, digite seus valores e aprenda cada etapa da resolução.</p>
+        </div>
+        <div class="workspace">
+          <section class="calculator-panel" aria-label="Operações científicas">
+            <div class="calculator-topbar"><h3>Operação científica</h3><span class="calculator-mode">Científica</span></div>
+            <form id="form-cientifica" class="fraction-form">
+              <div class="fraction-field"><label for="operacao-cientifica">Escolha a operação</label>
+                <select id="operacao-cientifica" name="operacao">
+                  <optgroup label="Trigonometria"><option value="sen">Seno (sen)</option><option value="cos">Cosseno (cos)</option><option value="tan">Tangente (tan)</option><option value="arcsen">Arco-seno (arcsen)</option><option value="arccos">Arco-cosseno (arccos)</option><option value="arctan">Arco-tangente (arctan)</option></optgroup>
+                  <optgroup label="Logaritmos e exponenciais"><option value="log">Logaritmo (base configurável)</option><option value="ln">Logaritmo natural (ln)</option><option value="exp">Exponencial (eˣ)</option></optgroup>
+                  <optgroup label="Outras funções"><option value="potencia">Potência (xʸ)</option><option value="raiz">Raiz de índice n</option><option value="fatorial">Fatorial (n!)</option><option value="abs">Valor absoluto |x|</option><option value="notacao">Notação científica</option><option value="potencia10">Potência de 10 (10ˣ)</option></optgroup>
+                </select>
+              </div>
+              <div id="modo-cientifica-campo" class="fraction-field"><label for="modo-cientifica">Unidade angular</label><select id="modo-cientifica"><option value="DEG">DEG — graus</option><option value="RAD">RAD — radianos</option></select></div>
+              <div id="campos-cientifica" class="fraction-fields"></div>
+              <p class="input-help">Digite os valores diretamente. Use vírgula ou ponto para decimais. Ângulos negativos são aceitos quando a função permitir.</p>
+              <button type="submit" id="calcular-cientifica" class="button button-primary fraction-submit">Calcular e explicar</button>
+              <p id="mensagem-cientifica" class="calculator-feedback" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+          <section class="solution-panel" aria-labelledby="titulo-solucao-cientifica">
+            <div class="solution-header"><div><p class="eyebrow">Aprenda matemática</p><h3 id="titulo-solucao-cientifica">Resolução passo a passo</h3></div><button type="button" id="copiar-cientifica" class="button button-small" disabled>Copiar</button></div>
+            <div id="estado-inicial-cientifica" class="solution-placeholder"><span class="placeholder-icon" aria-hidden="true">∑</span><h4>Sua explicação aparecerá aqui</h4><p>Escolha a função, digite os números e clique em calcular.</p></div>
+            <div id="conteudo-cientifica" class="solution-content" hidden><div class="solution-summary"><p class="solution-label">Resultado</p><p id="resultado-cientifica" class="solution-result"></p></div><h4>Etapas da resolução</h4><ol id="etapas-cientifica" class="steps-list"></ol><p id="observacao-cientifica" class="solution-note" hidden></p></div>
+            <div id="erro-cientifica" class="solution-error" role="alert" hidden><h4>Não foi possível calcular</h4><p id="texto-erro-cientifica"></p></div>
+          </section>
+        </div>
       </div>
     </section>
 
@@ -288,7 +325,7 @@
         <p class="eyebrow">Sobre o projeto</p>
         <h2 id="titulo-sobre">Por que o PitaMath existe?</h2>
         <p>Inspirado no nome de Pitágoras, o PitaMath nasce para ajudar estudantes a compreender a matemática. Nossa proposta é mostrar não só a resposta, mas também o caminho até ela.</p>
-        <p>Este projeto está em desenvolvimento. A calculadora básica já funciona e a escolar oferece frações, MMC, MDC, potências, raízes e equações do 1º e 2º grau. O módulo científico será desenvolvido posteriormente.</p>
+        <p>Este projeto está em desenvolvimento. A calculadora básica já funciona e a escolar oferece frações, MMC, MDC, potências, raízes e equações do 1º e 2º grau. O módulo científico oferece 15 operações com explicações didáticas.</p>
       </div>
     </section>
   </main>
